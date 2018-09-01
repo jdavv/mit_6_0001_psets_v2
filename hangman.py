@@ -90,6 +90,19 @@ def get_available_letters(letters_guessed):
             available_list.append(c)
     return available_list
 
+def is_guess_valid(letters_guessed, userinput):
+    '''
+    letters_guessed: list (of letters), which letters have been guessed so far
+    userinput: a string of 1 char that is only ascii lowercase
+    returns a boolean valid.
+    Checks if userinput is already in the list letters_guessed.
+    '''
+    if userinput in letters_guessed:
+        valid = False
+    else:
+        valid = True
+    return valid
+
 def hangman(secret_word):
     '''
     secret_word: string, the secret word to guess.
@@ -146,9 +159,12 @@ def hangman(secret_word):
             continue
         else:
             while len(userinput) == 1:
-                letters_guessed.append(userinput)
-                print("Input Acceptable")
-                print(letters_guessed)
+                if is_guess_valid(letters_guessed, userinput) is True:
+                    letters_guessed.append(userinput)
+                    print("Input Acceptable")
+                    print(letters_guessed)
+                else:
+                    print('Already Guessed', userinput)
                 break
             else:
                 print('Too long')
