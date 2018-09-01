@@ -148,7 +148,6 @@ def hangman(secret_word):
             else:
                 print('Too long')
                 continue
-    print(letters_guessed)
 # When you've completed your hangman function, scroll down to the bottom
 # of the file and uncomment the first two lines to test
 #(hint: you might want to pick your own
