@@ -9,11 +9,11 @@
 # You don't need to understand this helper code,
 # but you will have to know how to use the functions
 # (so be sure to read the docstrings!)
+
 import random
 import string
 
-WORDLIST_FILENAME = "words.txt"
-
+WORDLIST_FILENAME = "mystique.txt"
 
 def load_words():
     """
@@ -83,10 +83,12 @@ def get_available_letters(letters_guessed):
     returns: string (of letters), comprised of letters that represents which letters have not
       yet been guessed.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
-    
-    
+    available = string.ascii_lowercase
+    available_list = []
+    for c in available:
+        if c not in letters_guessed:
+            available_list.append(c)
+    return available_list
 
 def hangman(secret_word):
     '''
@@ -114,10 +116,44 @@ def hangman(secret_word):
     Follows the other limitations detailed in the problem write-up.
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    alphabet = string.ascii_lowercase
+    letters_guessed = []
+    letters_guessed_str = ''
+    gamestate=[]
+    gamestatestr = ''
 
+    for x in letters_guessed:
+        letters_guessed_str += x
 
+    for c in secret_word:
+        if c in letters_guessed:
+            gamestate.append(c)
+        else:
+            gamestate.append("_ ")
 
+    for c in gamestate:
+        gamestatestr += c
+
+    print('\n', len(gamestate), 'letter word:'
+          '\n', '~~~~~~~~~~~~~~',
+          '\n', gamestatestr,
+          '\n', '~~~~~~~~~~~~~~')
+
+    while True:
+        userinput = input('Your Guess: ')
+        if not userinput.islower():
+            print ("Not a lowercase letter")
+            continue
+        else:
+            while len(userinput) == 1:
+                letters_guessed.append(userinput)
+                print("Input Acceptable")
+                print(letters_guessed)
+                break
+            else:
+                print('Too long')
+                continue
+    print(letters_guessed)
 # When you've completed your hangman function, scroll down to the bottom
 # of the file and uncomment the first two lines to test
 #(hint: you might want to pick your own
