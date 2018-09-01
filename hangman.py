@@ -61,8 +61,24 @@ def is_word_guessed(secret_word, letters_guessed):
       False otherwise
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    secret_word_char_list = []
+    valid_guesses = []
 
+    for c in secret_word:
+        secret_word_char_list.append(c)
+
+    for c in secret_word:
+        if c in letters_guessed:
+            valid_guesses.append(c)
+            print('valid_guesses', valid_guesses)
+            print('secret_word_char_list:', secret_word_char_list)
+        else:
+            continue
+
+    if valid_guesses == secret_word_char_list:
+        return True
+    else:
+        return False
 
 
 def get_guessed_word(secret_word, letters_guessed):
@@ -134,14 +150,15 @@ def hangman(secret_word):
     while True:
         userinput = input('Your Guess: ')
         if not userinput.islower():
-            print ("Not a lowercase letter")
+            print("Not a lowercase letter")
             continue
         else:
             while len(userinput) == 1:
                 if is_guess_valid(letters_guessed, userinput) is True:
                     letters_guessed.append(userinput)
                     print("Input Acceptable")
-                    print(letters_guessed)
+                    print('letters_gussed: ', letters_guessed)
+                    print('is word guessed:', is_word_guessed(secret_word, letters_guessed))
                 else:
                     print('Already Guessed', userinput)
                 break
