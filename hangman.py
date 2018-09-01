@@ -129,29 +129,8 @@ def hangman(secret_word):
     Follows the other limitations detailed in the problem write-up.
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    alphabet = string.ascii_lowercase
+
     letters_guessed = []
-    letters_guessed_str = ''
-    gamestate=[]
-    gamestatestr = ''
-
-    for x in letters_guessed:
-        letters_guessed_str += x
-
-    for c in secret_word:
-        if c in letters_guessed:
-            gamestate.append(c)
-        else:
-            gamestate.append("_ ")
-
-    for c in gamestate:
-        gamestatestr += c
-
-    print('\n', len(gamestate), 'letter word:'
-          '\n', '~~~~~~~~~~~~~~',
-          '\n', gamestatestr,
-          '\n', '~~~~~~~~~~~~~~')
-
     while True:
         userinput = input('Your Guess: ')
         if not userinput.islower():
