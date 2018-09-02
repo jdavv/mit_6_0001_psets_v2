@@ -30,6 +30,7 @@ def load_words():
     # wordlist: list of strings
     wordlist = line.split()
     print("  ", len(wordlist), "words loaded.")
+    print("Welcome to the game Hangman!")
     return wordlist
 
 
@@ -115,6 +116,7 @@ def get_available_letters(letters_guessed):
         else:
             available_letters.append(' ')
     available_letters = ''.join(available_letters)
+    available_letters = "Available letters: " + available_letters
     return available_letters
 
 def is_guess_valid(letters_guessed, userinput):
@@ -158,12 +160,13 @@ def hangman(secret_word):
     # FILL IN YOUR CODE HERE AND DELETE "pass"
 
     letters_guessed = []
+    print("I am thinking of a word that is ", len(secret_word), "letters long. ")
     while True:
         print(get_guessed_word(secret_word, letters_guessed))
         print(get_available_letters(letters_guessed))
-        userinput = input('Your Guess: ')
+        userinput = input("Please guess a letter: ")
         if not userinput.islower():
-            print("Not a lowercase letter")
+            print("Not a lowercase letter ")
             continue
         else:
             while len(userinput) == 1:
