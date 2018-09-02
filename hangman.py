@@ -104,9 +104,18 @@ def get_guessed_word(secret_word, letters_guessed):
 def get_available_letters(letters_guessed):
     '''
     letters_guessed: list (of letters), which letters have been guessed so far
-    returns: string (of letters), comprised of letters that represents which letters have not
+    returns: available_letters: string (of letters), comprised of letters that represents which letters have not
       yet been guessed.
     '''
+    alphabet = string.ascii_lowercase
+    available_letters = []
+    for c in alphabet:
+        if c not in letters_guessed:
+            available_letters.append(c)
+        else:
+            available_letters.append(' ')
+    available_letters = ''.join(available_letters)
+    return available_letters
 
 def is_guess_valid(letters_guessed, userinput):
     '''
@@ -151,6 +160,7 @@ def hangman(secret_word):
     letters_guessed = []
     while True:
         print(get_guessed_word(secret_word, letters_guessed))
+        print(get_available_letters(letters_guessed))
         userinput = input('Your Guess: ')
         if not userinput.islower():
             print("Not a lowercase letter")
