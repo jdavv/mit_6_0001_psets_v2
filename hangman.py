@@ -85,11 +85,19 @@ def get_guessed_word(secret_word, letters_guessed):
     '''
     secret_word: string, the word the user is guessing
     letters_guessed: list (of letters), which letters have been guessed so far
-    returns: string, comprised of letters, underscores (_), and spaces that represents
+    returns: guessed_word: string, comprised of letters, underscores (_), and spaces that represents
       which letters in secret_word have been guessed so far.
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    valid_guesses = []
+    for c in secret_word:
+        if c in letters_guessed:
+            valid_guesses.append(c)
+        else:
+            valid_guesses.append("_ ")
+
+    guessed_word = ''.join(valid_guesses)
+    return guessed_word
 
 
 
@@ -99,12 +107,6 @@ def get_available_letters(letters_guessed):
     returns: string (of letters), comprised of letters that represents which letters have not
       yet been guessed.
     '''
-    available = string.ascii_lowercase
-    available_list = []
-    for c in available:
-        if c not in letters_guessed:
-            available_list.append(c)
-    return available_list
 
 def is_guess_valid(letters_guessed, userinput):
     '''
@@ -148,6 +150,7 @@ def hangman(secret_word):
 
     letters_guessed = []
     while True:
+        print(get_guessed_word(secret_word, letters_guessed))
         userinput = input('Your Guess: ')
         if not userinput.islower():
             print("Not a lowercase letter")
@@ -158,7 +161,7 @@ def hangman(secret_word):
                     letters_guessed.append(userinput)
                     print("Input Acceptable")
                     print('letters_gussed: ', letters_guessed)
-                    print('is word guessed:', is_word_guessed(secret_word, letters_guessed))
+                    print('is_word_guessed:', is_word_guessed(secret_word, letters_guessed))
                 else:
                     print('Already Guessed', userinput)
                 break
