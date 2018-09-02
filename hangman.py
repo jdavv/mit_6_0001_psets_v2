@@ -100,6 +100,14 @@ def get_guessed_word(secret_word, letters_guessed):
     guessed_word = ''.join(valid_guesses)
     return guessed_word
 
+def is_a_vowel(userinput):
+    vowel = ['a', 'e', 'i', 'o', 'u']
+
+    if userinput in vowel:
+        return True
+    else:
+        return False
+
 
 
 def get_available_letters(letters_guessed):
@@ -131,6 +139,14 @@ def is_guess_valid(letters_guessed, userinput):
     else:
         valid = True
     return valid
+
+def score(secret_word, userinput):
+    '''
+
+    :param arg1:
+    :param arg2:
+    :return:
+    '''
 
 def hangman(secret_word):
     '''
@@ -167,19 +183,24 @@ def hangman(secret_word):
         userinput = input("Please guess a letter: ")
         if not userinput.islower():
             print("Not a lowercase letter ")
+
+            #TODO score - warning or guess
             continue
         else:
             while len(userinput) == 1:
                 if is_guess_valid(letters_guessed, userinput) is True:
+                    print("is_a_vowel: ", is_a_vowel(userinput))
                     letters_guessed.append(userinput)
                     print("Input Acceptable")
                     print('letters_gussed: ', letters_guessed)
                     print('is_word_guessed:', is_word_guessed(secret_word, letters_guessed))
                 else:
                     print('Already Guessed', userinput)
+                    #TODO score - warning
                 break
             else:
                 print('Too long')
+                #TODO score - warning
                 continue
 # When you've completed your hangman function, scroll down to the bottom
 # of the file and uncomment the first two lines to test
